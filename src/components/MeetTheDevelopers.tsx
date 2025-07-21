@@ -63,7 +63,9 @@ export function MeetTheDevelopers() {
           {developers.map((dev, idx) => (
             <div
               key={dev.name}
-              className={`flip-card${flipped[idx] ? " flipped" : ""} !h-[250px] sm:!h-[320px]`}
+              className={`flip-card${
+                flipped[idx] ? " flipped" : ""
+              } !h-[250px] sm:!h-[320px]`}
               onClick={() =>
                 setFlipped((prev) => ({
                   ...prev,
@@ -78,7 +80,9 @@ export function MeetTheDevelopers() {
               }
             >
               <div
-                className={`flip-card-inner${flipped[idx] ? " flipped" : ""}`}
+                className={`flip-card-inner${
+                  flipped[idx] ? " flipped" : ""
+                }`}
               >
                 {/* Front Side - ID Card Style */}
                 <div className="flip-card-front">
@@ -93,11 +97,11 @@ export function MeetTheDevelopers() {
                     {/* Profile Section */}
                     <div className="text-center flex-1 flex flex-col items-center justify-center">
                       {/* Profile Image */}
-                      <div className="relative w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-2 sm:mb-4">
+                      <div className="relative w-full h-32 sm:w-24 sm:h-24 mx-auto mb-2 sm:mb-4 flex items-center justify-center">
                         <img
                           src={dev.image}
                           alt={dev.name}
-                          className="w-full h-full rounded-full object-cover border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg min-w-[64px] min-h-[64px] sm:min-w-[96px] sm:min-h-[96px]"
+                          className="w-32 h-32 sm:w-24 sm:h-24 rounded-full object-cover border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg max-w-full max-h-full"
                         />
                       </div>
 
@@ -173,9 +177,12 @@ export function MeetTheDevelopers() {
           height: 250px;
           perspective: 1000px;
         }
-        @media (min-width: 640px) {
+        @media (max-width: 640px) {
           .flip-card {
-            height: 320px;
+            height: 300px;
+          }
+          .flip-card-front .w-full.h-32 {
+            margin-bottom: 0.5rem;
           }
         }
 
