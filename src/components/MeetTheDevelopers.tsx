@@ -59,11 +59,11 @@ export function MeetTheDevelopers() {
         </div>
 
         {/* ID Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
           {developers.map((dev, idx) => (
             <div
               key={dev.name}
-              className={`flip-card${flipped[idx] ? " flipped" : ""}`}
+              className={`flip-card${flipped[idx] ? " flipped" : ""} !h-[250px] sm:!h-[320px]`}
               onClick={() =>
                 setFlipped((prev) => ({
                   ...prev,
@@ -82,33 +82,33 @@ export function MeetTheDevelopers() {
               >
                 {/* Front Side - ID Card Style */}
                 <div className="flip-card-front">
-                  <div className="relative h-full bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/50 overflow-hidden">
+                  <div className="relative h-full bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl border border-white/20 dark:border-gray-700/50 overflow-hidden flex flex-col justify-between p-3 sm:p-6">
                     {/* Company Header */}
-                    <div className="bg-blue-600 h-16 flex items-center justify-center">
-                      <h4 className="text-white font-bold text-sm tracking-wider">
+                    <div className="bg-blue-600 h-10 sm:h-16 flex items-center justify-center rounded-xl mb-2 sm:mb-0">
+                      <h4 className="text-white font-bold text-xs sm:text-sm tracking-wider">
                         {dev.role}
                       </h4>
                     </div>
 
                     {/* Profile Section */}
-                    <div className="p-6 text-center">
+                    <div className="text-center flex-1 flex flex-col items-center justify-center">
                       {/* Profile Image */}
-                      <div className="relative w-24 h-24 mx-auto mb-4">
+                      <div className="relative w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-2 sm:mb-4">
                         <img
                           src={dev.image}
                           alt={dev.name}
-                          className="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-lg min-w-[96px] min-h-[96px]"
+                          className="w-full h-full rounded-full object-cover border-2 sm:border-4 border-white dark:border-gray-700 shadow-lg min-w-[64px] min-h-[64px] sm:min-w-[96px] sm:min-h-[96px]"
                         />
                       </div>
 
                       {/* Name */}
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                      <h3 className="text-base sm:text-xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2 leading-tight">
                         {dev.name}
                       </h3>
                     </div>
 
                     {/* Bottom Stripe */}
-                    <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 sm:h-2 bg-gradient-to-r from-blue-600 to-purple-600"></div>
                   </div>
                 </div>
 
@@ -170,8 +170,13 @@ export function MeetTheDevelopers() {
         .flip-card {
           background-color: transparent;
           width: 100%;
-          height: 320px;
+          height: 250px;
           perspective: 1000px;
+        }
+        @media (min-width: 640px) {
+          .flip-card {
+            height: 320px;
+          }
         }
 
         .flip-card-inner {

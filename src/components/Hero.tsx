@@ -169,21 +169,7 @@ export const Hero: React.FC = () => {
   return (
     <>
       <style>{`
-        .hero-bg {
-          background-image: url("https://nitandhra.ac.in/main/assets/images/about/pic1.webp");
-          background-position: center top;
-          background-size: cover;
-          background-repeat: no-repeat;
-          width: 100%;
-          height: 100%;
-        }
-        @media (max-width: 640px) {
-          .hero-bg {
-            background-position: center 30%;
-            background-size: cover;
-            min-height: 100vh;
-          }
-        }
+        /* Removed .hero-bg background-image */
         .text-gradient-animated {
           background: linear-gradient(
             90deg,
@@ -295,7 +281,8 @@ export const Hero: React.FC = () => {
       <section className="relative flex items-center justify-center overflow-hidden z-0 py-4 md:py-8 min-h-[40vh] md:min-h-[35vh]">
         {/* Responsive Background */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <div className="hero-bg absolute inset-0">
+          {/* Removed .hero-bg and background image, only overlays remain */}
+          <div className="absolute inset-0">
             {/* Enhanced overlay with better mobile contrast */}
             <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80 md:from-black/70 md:via-black/50 md:to-black/70"></div>
             {/* Animated overlay for depth */}
