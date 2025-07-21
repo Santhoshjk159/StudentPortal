@@ -4,18 +4,42 @@ import { Button } from "./ui/button";
 import { ThemeToggle } from "./ThemeToggle";
 import { useState } from "react";
 import nitapLogo from "../asset/logo/nitap.png";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
-    { label: "Home", href: "/#home" },
-    { label: "Portals", href: "/#portals" },
-    { label: "Downloads", href: "/#downloads" },
-    { label: "Links", href: "/#links" },
-    { label: "Developers", href: "/developers" }, // Now links to separate page
-    { label: "Contact", href: "/#contact" },
+    { label: "Home", href: "/#home", hash: "#home" },
+    { label: "Portals", href: "/#portals", hash: "#portals" },
+    { label: "Downloads", href: "/#downloads", hash: "#downloads" },
+    { label: "Links", href: "/#links", hash: "#links" },
+    { label: "Developers", href: "/developers" },
+    { label: "Contact", href: "/#contact", hash: "#contact" },
   ];
+
+  // Smooth scroll for hash links
+  const handleNavClick = (item: typeof navItems[0]) => (e: React.MouseEvent) => {
+    if (item.href.startsWith("/#") || item.href.startsWith("#")) {
+      e.preventDefault();
+      if (location.pathname !== "/") {
+        navigate("/" + (item.hash || item.href));
+        setTimeout(() => {
+          const el = document.querySelector(item.hash || item.href);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const el = document.querySelector(item.hash || item.href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      setIsMenuOpen(false);
+    } else if (item.href.startsWith("/developers")) {
+      navigate("/developers");
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <motion.header
@@ -53,6 +77,7 @@ export function Header() {
               <motion.a
                 key={item.label}
                 href={item.href}
+                onClick={handleNavClick(item)}
                 whileHover={{ scale: 1.13, y: -2 }}
                 className="relative text-lg font-bold px-3 py-1 rounded-xl transition-all duration-200 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 group"
               >
@@ -96,8 +121,8 @@ export function Header() {
               <motion.a
                 key={item.label}
                 href={item.href}
+                onClick={handleNavClick(item)}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => setIsMenuOpen(false)}
                 className="block px-4 py-2 text-lg font-bold text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 rounded-xl transition-all duration-200"
               >
                 {item.label}
