@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Background } from "./components/Background";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
@@ -37,6 +37,10 @@ function App() {
               }
             />
             <Route path="/developers" element={<DevelopersPage />} />
+          </Routes>
+          {/* Fallback route for 404s: redirect to home */}
+          <Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
         <section id="contact">
