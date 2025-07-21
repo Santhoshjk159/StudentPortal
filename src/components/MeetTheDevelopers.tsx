@@ -53,7 +53,7 @@ export function MeetTheDevelopers() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Meet Our{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Team
+              Developers
             </span>
           </h2>
         </div>
